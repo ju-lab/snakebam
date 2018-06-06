@@ -29,7 +29,7 @@ rule mutect2_normalcall:
     resources: mem_mb = 4000
     run:
         normal_name = sampleNameBam(input.normal_bam)
-        shell('{input.java8} -jar -Xmx{resources.mem_mb} {input.gatk4} Mutect2 -R {input.ref} \
+        shell('{input.java8} -jar -Xmx{resources.mem_mb}m {input.gatk4} Mutect2 -R {input.ref} \
             -I {input.normal_bam} \
             -tumor {normal_name}\
             --disable-read-filter MateOnSameContigOrNoMappedMateReadFilter \

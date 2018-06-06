@@ -99,7 +99,7 @@ if args.C: pref = " -C " + args.C
 if args.d: dd = " -d " + args.d
 if args.D: rd = " -D " + args.D
 #if args.e: se = " -e logs/" + args.e # added a log folder
-se = f' -e {LOGDIR}/{jobname}.err'
+se = f' -e log/{jobname}.err'
 if args.f: ft = " -f"
 if args.h: hold = " -h"
 if args.j: j = " -j " + args.j
@@ -108,7 +108,7 @@ if args.m: mail = " -m " + args.m
 if args.M: mailuser = " -M " + args.M
 if args.N: jname = " -N " + args.N
 #if args.o: so = " -o logs/" + args.o # added a log folder
-so = f' -o {LOGDIR}/{jobname}.out'
+so = f' -o log/{jobname}.out'
 if args.p: priority = " -p " + args.p
 if args.P: proxy = " -P " + args.P
 if args.q: q = " -q " + args.q
@@ -121,7 +121,7 @@ if args.W: add= " -W \"" + args.W + "\""
 
 nodes=""
 ppn=""
-mem=""
+mem_mb=""
 walltime=""
 
 if "threads" in job_properties:
@@ -131,17 +131,17 @@ if "resources" in job_properties:
     resources = job_properties["resources"]
     if "nodes" in resources: nodes="nodes=" + str(resources["nodes"])
     if ppn and not nodes : nodes="nodes=1"
-    if "mem" in resources: mem="mem=" + str(resources["mem"])
+    if "mem_mb" in resources: mem="mem=" + str(resources["mem_mb"]) + 'mb' # added mb by cjyoon
     if "walltime" in resources: walltime="walltime=" + str(resources["walltime"])
 
-if nodes or ppn or mem or walltime: resourceparams = " -l \""
+if nodes or ppn or mem_mb or walltime: resourceparams = " -l \""
 if nodes: resourceparams = resourceparams + nodes
 if nodes and ppn: resourceparams = resourceparams + ":" + ppn
-if nodes and mem: resourceparams = resourceparams + ","
-if mem: resourceparams = resourceparams + mem
-if walltime and (nodes or mem): resourceparams = resourceparams + ","
+if nodes and mem_mb: resourceparams = resourceparams + ","
+if mem_mb: resourceparams = resourceparams + mem_mb
+if walltime and (nodes or mem_mb): resourceparams = resourceparams + ","
 if walltime: resourceparams = resourceparams + walltime
-if nodes or mem or walltime: resourceparams = resourceparams + "\""
+if nodes or mem_mb or walltime: resourceparams = resourceparams + "\""
 
 cmd = "qsub {a}{A}{b}{c}{C}{d}{D}{e}{f}{h}{j}{l}{m}{M}{N}{o}{p}{P}{q}{t}{u}{v}{V}{w}{W}{rp}{dep}{ex}".format(\
 	a=atime,A=acc_string,b=pbs_time,c=chkpt,C=pref,d=dd,D=rd,e=se,f=ft,h=hold,j=j,l=resource,m=mail,M=mailuser,\
