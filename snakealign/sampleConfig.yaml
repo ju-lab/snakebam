@@ -1,0 +1,49 @@
+samples:
+    '2574':
+        fq1: /home/users/upload/uploader01/2574/2574_R1.fastq.gz
+        fq2: /home/users/upload/uploader01/2574/2574_R2.fastq.gz
+    '2581':
+        fq1: /home/users/upload/uploader01/2581-Positive/2581-Positive_R1.fastq.gz
+        fq2: /home/users/upload/uploader01/2581-Positive/2581-Positive_R2.fastq.gz
+    '2616':
+        fq1: /home/users/upload/uploader01/2616-plus/2616-plus_R1.fastq.gz
+        fq2: /home/users/upload/uploader01/2616-plus/2616-plus_R2.fastq.gz
+    '2972':
+        fq1: /home/users/upload/uploader01/2972-Positive/2972-Positive_R1.fastq.gz
+        fq2: /home/users/upload/uploader01/2972-Positive/2972-Positive_R2.fastq.gz
+    '3007':
+        fq1: /home/users/upload/uploader01/3007-SD/3007-SD_R1.fastq.gz
+        fq2: /home/users/upload/uploader01/3007-SD/3007-SD_R2.fastq.gz
+    '5349':
+        fq1: /home/users/upload/uploader01/5349/5349_R1.fastq.gz
+        fq2: /home/users/upload/uploader01/5349/5349_R2.fastq.gz
+    '5439':
+        fq1: /home/users/upload/uploader01/5439SD/5439SD_R1.fastq.gz
+        fq2: /home/users/upload/uploader01/5439SD/5439SD_R2.fastq.gz
+    '5486':
+        fq1: /home/users/upload/uploader01/5486SD/5486SD_R1.fastq.gz
+        fq2: /home/users/upload/uploader01/5486SD/5486SD_R2.fastq.gz
+    '5487':
+        fq1: /home/users/upload/uploader01/5487SD/5487SD_R1.fastq.gz
+        fq2: /home/users/upload/uploader01/5487SD/5487SD_R2.fastq.gz
+    '5488':
+        fq1: /home/users/upload/uploader01/5488SD/5488SD_R1.fastq.gz
+        fq2: /home/users/upload/uploader01/5488SD/5488SD_R2.fastq.gz
+    '5497':
+        fq1: /home/users/upload/uploader01/5497SD/5497SD_R1.fastq.gz
+        fq2: /home/users/upload/uploader01/5497SD/5497SD_R2.fastq.gz
+    '5580':
+        fq1: /home/users/upload/uploader01/5580-plus-DNA/5580-plus-DNA_R1.fastq.gz
+        fq2: /home/users/upload/uploader01/5580-plus-DNA/5580-plus-DNA_R2.fastq.gz
+    '5635':
+        fq1: /home/users/upload/uploader01/5635-plus-DNA/5635-plus-DNA_R1.fastq.gz
+        fq2: /home/users/upload/uploader01/5635-plus-DNA/5635-plus-DNA_R2.fastq.gz
+    '5650':
+        fq1: /home/users/upload/uploader01/5650-plus-DNA/5650-plus-DNA_R1.fastq.gz
+        fq2: /home/users/upload/uploader01/5650-plus-DNA/5650-plus-DNA_R2.fastq.gz
+    '5685':
+        fq1: /home/users/upload/uploader01/5685-plus-DNA/5685-plus-DNA_R1.fastq.gz
+        fq2: /home/users/upload/uploader01/5685-plus-DNA/5685-plus-DNA_R2.fastq.gz
+    '5702':
+        fq1: /home/users/upload/uploader01/5702-plus-DNA/5702-plus-DNA_R1.fastq.gz
+        fq2: /home/users/upload/uploader01/5702-plus-DNA/5702-plus-DNA_R2.fastq.gz
