@@ -1,0 +1,97 @@
+# Snakefile to run FASTQ -> Processed BAM -> basic somatic variant calling (SNV, SV, and CNV)
+# 2018.06.03 Jongsoo Yoon
+import pysam 
+
+def sampleNameBam(bamFile):
+    """get @RG SM: information as sample name from BAM header"""
+    bam = pysam.AlignmentFile(bamFile)
+    name = bam.header['RG'][0]['SM']
+    return name
+
+
+configfile: 'pathConfig.yaml'
+configfile: 'sampleConfig.yaml'
+
+rule all:
+    input:
+        'done'
+rule mutect2_normalcall:
+    input:
+        java8 = config['java8'], 
+        gatk4 = config['gatk4'], 
+        ref = config['reference'], 
+        normal_bam = lambda wildcards: config['samples'][wildcards.sample]['normal_bam']
+    output:
+        normal_vcf = 'normal_vcfs/{sample}.normal.vcf.gz',
+    params:
+        samplename = '{sample}'
+    threads: 1
+    resources: mem_mb = 4000
+    run:
+        normal_name = sampleNameBam(input.normal_bam)
+        shell('{input.java8} -jar -Xmx{resources.mem_mb} {input.gatk4} Mutect2 -R {input.ref} \
+            -I {input.normal_bam} \
+            -tumor {normal_name}\
+            --disable-read-filter MateOnSameContigOrNoMappedMateReadFilter \
+            -O normal_vcfs/{params.samplename}.normal.vcf.gz')
+
+rule mutect2_pon:
+    input: 
+        java8 = config['java8'], 
+        gatk4 = config['gatk4'], 
+        normal_vcfs = expand('normal_vcfs/{sample}.normal.vcf.gz', sample=config['samples'])
+    output:
+        pon = 'pon/pon.vcf.gz'
+    threads: 1
+    resources: mem_mb = 4000
+    run:
+        input_string = ['-v' + vcf for vcf in input.normal_vcfs]
+        input_string = " ".join(input_string)
+        shell('{input.java8} -jar -Xmx{resources.mem_mb}m {input.gatk4} CreateSomaticPanelOfNormals {input_string} \
+            -O {output.pon}')
+
+
+rule mutect2_call: 
+    input:
+        java8 = config['java8'], 
+        gatk4 = config['gatk4'],
+        ref = config['reference'], 
+        pon = 'pon/pon.vcf.gz', 
+        normal_bam = lambda wildcards: config['samples'][wildcards.sample]['normal_bam'],
+        tumor_bam = lambda wildcards: config['samples'][wildcards.sample]['tumor_bam'],
+        af_only_gnomad = config['af_only_gnomad']
+
+    output:
+        vcf = 'data_processing/mutect2/{sample}.mutect2.vcf.gz', 
+        bamout = 'data_processing/mutect2/{sample}.mutect2.bam'
+    threads: 1
+    resources: mem_mb = 4000
+    run:
+        tumor_name = sampleNameBam(input.tumor_bam)
+        normal_name = sampleNameBam(input.normal_bam)
+
+        shell('{input.java8} -jar -Xmx{resources.mem_mb}m {input.gatk} --java-options "-Xmx2g" Mutect2 \
+            -R {input.ref} \
+            -I {input.tumor_bam} \
+            -I {input.normal_bam} \
+            -tumor {tumor_name} \
+            -normal {normal_name} \
+            -pon {input.pon}\
+            --germline-resource {input.af_only_gnomad} \
+            --af-of-alleles-not-in-resource 0.0000025 \
+            --disable-read-filter MateOnSameContigOrNoMappedMateReadFilter \
+            -O {output.vcf} \
+            -bamout {output.bamout}')
+
+
+
+rule combine:
+        input:
+            outfiles = expand('data_processing/mutect2/{sample}.mutect2.vcf.gz', sample=config['samples'])
+             # outfiles=expand('normal_vcfs/{sample}.normal.vcf.gz', sample=config['samples'])
+        #    outfiles=expand("data_processing/mutect2/{sample}.mutect2.vcf.gz", sample=config["samples"])
+        output:
+            "done"
+        shell:
+            "touch {output}"
+

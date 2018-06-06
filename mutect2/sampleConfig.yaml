@@ -1,0 +1,88 @@
+samples:
+    '3796':
+        tumor_bam: /home/users/cjyoon/Projects/myeloma/bam/3796.sorted.md.indel.br.bam
+        normal_bam: /home/users/cjyoon/Projects/myeloma/bam/3570.sorted.md.indel.br.bam
+    '3869':
+        tumor_bam: /home/users/cjyoon/Projects/myeloma/bam/3869.sorted.md.indel.br.bam
+        normal_bam: /home/users/cjyoon/Projects/myeloma/bam/3637.sorted.md.indel.br.bam
+    '4031':
+        tumor_bam: /home/users/cjyoon/Projects/myeloma/bam/4031.sorted.md.indel.br.bam 
+        normal_bam: /home/users/cjyoon/Projects/myeloma/bam/3801.sorted.md.indel.br.bam
+    '4638':
+        tumor_bam: /home/users/cjyoon/Projects/myeloma/bam/4638.sorted.md.indel.br.bam
+        normal_bam: /home/users/cjyoon/Projects/myeloma/bam/4361.sorted.md.indel.br.bam
+    '4644':
+        tumor_bam: /home/users/cjyoon/Projects/myeloma/bam/4644.sorted.md.indel.br.bam
+        normal_bam: /home/users/cjyoon/Projects/myeloma/bam/4367.sorted.md.indel.br.bam
+    '2643':
+        tumor_bam: /home/users/cjyoon/Projects/myeloma/bam/2643.sorted.md.indel.br.bam
+        normal_bam: /home/users/cjyoon/Projects/myeloma/bam/2409.sorted.md.indel.br.bam
+    '2655':
+        tumor_bam: /home/users/cjyoon/Projects/myeloma/bam/2655.sorted.md.indel.br.bam
+        normal_bam: /home/users/cjyoon/Projects/myeloma/bam/2422.sorted.md.indel.br.bam
+    '2665':
+        tumor_bam: /home/users/cjyoon/Projects/myeloma/bam/2665.sorted.md.indel.br.bam
+        normal_bam: /home/users/cjyoon/Projects/myeloma/bam/2433.sorted.md.indel.br.bam
+    '2685':
+        tumor_bam: /home/users/cjyoon/Projects/myeloma/bam/2685.sorted.md.indel.br.bam
+        normal_bam: /home/users/cjyoon/Projects/myeloma/bam/2459.sorted.md.indel.br.bam
+    '2709':
+        tumor_bam: /home/users/cjyoon/Projects/myeloma/bam/2709.sorted.md.indel.br.bam
+        normal_bam: /home/users/cjyoon/Projects/myeloma/bam/2486.sorted.md.indel.br.bam
+    '3018':
+        tumor_bam: /home/users/cjyoon/Projects/myeloma/bam/3018.sorted.md.indel.br.bam
+        normal_bam: /home/users/cjyoon/Projects/myeloma/bam/2913.sorted.md.indel.br.bam
+    '3083':
+        tumor_bam: /home/users/cjyoon/Projects/myeloma/bam/3083.sorted.md.indel.br.bam
+        normal_bam: /home/users/cjyoon/Projects/myeloma/bam/2857.sorted.md.indel.br.bam
+    '3346':
+        tumor_bam: /home/users/cjyoon/Projects/myeloma/bam/3346.sorted.md.indel.br.bam
+        normal_bam: /home/users/cjyoon/Projects/myeloma/bam/3122.sorted.md.indel.br.bam
+    '3373':
+        tumor_bam: /home/users/cjyoon/Projects/myeloma/bam/3373.sorted.md.indel.br.bam  
+        normal_bam: /home/users/cjyoon/Projects/myeloma/bam/3151.sorted.md.indel.br.bam
+    '3396':
+        tumor_bam: /home/users/cjyoon/Projects/myeloma/bam/3396.sorted.md.indel.br.bam
+        normal_bam: /home/users/cjyoon/Projects/myeloma/bam/3175.sorted.md.indel.br.bam
+    '3897':
+        tumor_bam: /home/users/cjyoon/Projects/myeloma/bam/3897.sorted.md.indel.br.bam
+        normal_bam: /home/users/cjyoon/Projects/myeloma/bam/3665.sorted.md.indel.br.bam
+    '3971':
+        tumor_bam: /home/users/cjyoon/Projects/myeloma/bam/3971.sorted.md.indel.br.bam
+        normal_bam: /home/users/cjyoon/Projects/myeloma/bam/3740.sorted.md.indel.br.bam
+    '4043':
+        tumor_bam: /home/users/cjyoon/Projects/myeloma/bam/4043.sorted.md.indel.br.bam
+        normal_bam: /home/users/cjyoon/Projects/myeloma/bam/3813.sorted.md.indel.br.bam
+    '4132':
+        tumor_bam: /home/users/cjyoon/Projects/myeloma/bam/4132.sorted.md.indel.br.bam  
+        normal_bam: /home/users/cjyoon/Projects/myeloma/bam/3904.sorted.md.indel.br.bam
+    '4489':
+        tumor_bam: /home/users/cjyoon/Projects/myeloma/bam/4489.sorted.md.indel.br.bam
+        normal_bam: /home/users/cjyoon/Projects/myeloma/bam/4259.sorted.md.indel.br.bam
+    '4491':
+        tumor_bam: /home/users/cjyoon/Projects/myeloma/bam/4491.sorted.md.indel.br.bam
+        normal_bam: /home/users/cjyoon/Projects/myeloma/bam/4261.sorted.md.indel.br.bam
+    '4509':
+        tumor_bam: /home/users/cjyoon/Projects/myeloma/bam/4509.sorted.md.indel.br.bam
+        normal_bam: /home/users/cjyoon/Projects/myeloma/bam/4279.sorted.md.indel.br.bam
+    '4515':
+        tumor_bam: /home/users/cjyoon/Projects/myeloma/bam/4515.sorted.md.indel.br.bam
+        normal_bam: /home/users/cjyoon/Projects/myeloma/bam/4285.sorted.md.indel.br.bam
+    '4527':
+        tumor_bam: /home/users/cjyoon/Projects/myeloma/bam/4527.sorted.md.indel.br.bam
+        normal_bam: /home/users/cjyoon/Projects/myeloma/bam/4298.sorted.md.indel.br.bam
+    '4529':
+        tumor_bam: /home/users/cjyoon/Projects/myeloma/bam/4529.sorted.md.indel.br.bam
+        normal_bam: /home/users/cjyoon/Projects/myeloma/bam/4300.sorted.md.indel.br.bam
+    '4593':
+        tumor_bam: /home/users/cjyoon/Projects/myeloma/bam/4593.sorted.md.indel.br.bam
+        normal_bam: /home/users/cjyoon/Projects/myeloma/bam/4454.sorted.md.indel.br.bam
+    '4663':
+        tumor_bam: /home/users/cjyoon/Projects/myeloma/bam/4663.sorted.md.indel.br.bam
+        normal_bam: /home/users/cjyoon/Projects/myeloma/bam/4385.sorted.md.indel.br.bam
+    '4730':
+        tumor_bam: /home/users/cjyoon/Projects/myeloma/bam/4730.sorted.md.indel.br.bam   
+        normal_bam: /home/users/cjyoon/Projects/myeloma/bam/4451.sorted.md.indel.br.bam
+    '5032':
+        tumor_bam: /home/users/cjyoon/Projects/myeloma/bam/5032.sorted.md.indel.br.bam
+        normal_bam: /home/users/cjyoon/Projects/myeloma/bam/4747.sorted.md.indel.br.bam

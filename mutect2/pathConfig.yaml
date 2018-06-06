@@ -1,0 +1,22 @@
+reference: /home/users/data/01_reference/human_g1k_v37/human_g1k_v37.fasta
+
+# basic languages
+java8: /home/users/cjyoon/tools/jdk1.8.0_171/bin/java
+java7: /home/users/cjyoon/tools/jdk1.7.0_80/bin/java
+python3: /home/users/cjyoon/anaconda3/bin/python
+python2: /home/users/cjyoon/anaconda3/envs/py27/bin/python
+
+# bam processing
+picard: /home/users/tools/picard/dist/picard.jar
+gatk4: /home/users/cjyoon/tools/gatk-4.0.4.0/gatk-package-4.0.4.0-local.jar
+samtools: /home/users/cjyoon/anaconda3/bin/samtools
+bwa: /home/users/cjyoon/anaconda3/bin/bwa
+
+af_only_gnomad: /home/users/cjyoon/reference/mutect2/af-only-gnomad.raw.sites.b37.vcf.gz
+small_exac_common: /home/users/cjyoon/reference/mutect2/small_exac_common_3_b37.vcf.gz
+
+# variant filters
+passFilter: scripts/passFilter
+
+# variant annotator
+vep: /home/users/cjyoon/ensembl-vep/vep
