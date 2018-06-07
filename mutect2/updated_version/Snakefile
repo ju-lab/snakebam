@@ -144,7 +144,7 @@ rule artifact_metric:
     log:
         'logs/{sample}.artifact_metric.log'
     shell:
-        "({input.java8} -jar {input.gatk4} -Xmx{resources.mem_mb}m "
+        "({input.java8} -jar -Xmx{resources.mem_mb}m {input.gatk4} "
         "CollectSequencingArtifactMetrics "
         "-I {input.tumor_bam} "
         "-O data_processing/mutect2/artifact_filter/{wildcards.sample} "
