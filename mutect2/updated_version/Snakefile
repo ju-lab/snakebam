@@ -145,7 +145,7 @@ rule artifact_metric:
         'logs/{sample}.artifact_metric.log'
     shell:
         "({input.java8} -jar {input.gatk4} -Xmx{resources.mem_mb}m "
-        "{input.gatk4} CollectSequencingArtifactMetrics "
+        "CollectSequencingArtifactMetrics "
         "-I {input.tumor_bam} "
         "-O data_processing/mutect2/artifact_filter/{wildcards.sample} "
         "--FILE_EXTENSION '.txt' "
@@ -161,9 +161,9 @@ rule artifact_filter_mutectcalls:
         artifact_filtered_vcf = 'data_processing/mutect2/final/{sample}.mutect2.final.vcf.gz'
     resources: mem_mb = 4000
     log:
-        'log/{sample}.artifact_filter_mutectcalls'
+        'log/{sample}.artifact_filter_mutectcalls.log'
     shell:
-        "({input.java8} -jar {input.gatk4} -Xmx{resources.mem_mb}m " 
+        "({input.java8} -jar -Xmx{resources.mem_mb}m {input.gatk4}  " 
         " FilterByOrientationBias " 
         "-A G/T "
         "-A C/T "
