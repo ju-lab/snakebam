@@ -26,7 +26,7 @@ rule mutect2_normalcall:
     params:
         samplename = '{sample}'
     threads: 1
-    resources: mem_mb = 4000
+    resources: mem_mb = lambda wildcards, attempt: attempt * 4000
     log: 
         'logs/{sample}.mutect2_normalcall.log'
     run:
@@ -46,7 +46,7 @@ rule mutect2_pon:
     output:
         pon = 'data_processing/mutect2/pon/pon.vcf.gz'
     threads: 1
-    resources: mem_mb = 4000
+    resources: mem_mb = lambda wildcards, attempt: attempt * 4000
     log:
         'logs/mutect2_pon.log'
     run:
@@ -70,7 +70,7 @@ rule mutect2_call:
         vcf = 'data_processing/mutect2/initial_callset/{sample}.mutect2.vcf.gz', 
         bamout = 'data_processing/mutect2/initial_callset/{sample}.mutect2.bam'
     threads: 1
-    resources: mem_mb = 4000
+    resources: mem_mb = lambda wildcards, attempt: attempt * 4000
     log:
         'logs/{sample}.mutect2_call.log'
     run:
@@ -101,7 +101,7 @@ rule contam_estimate:
         contaminationtable = "data_processing/mutect2/contam/{sample}.contamination.table"
 
     threads:1
-    resources: mem_mb = 4000
+    resources: mem_mb = lambda wildcards, attempt: attempt * 4000
     log:
         'logs/{sample}.contam_estimate.log'
     shell:
@@ -109,7 +109,7 @@ rule contam_estimate:
         "-I {input.tumor_bam} "
         "-V {input.common_biallelic_variants} "
         "-O {output.pileupsummarytable};"
-        "{input.java8} {input.gatk4} CalculateContamination "
+        "{input.java8} -jar -Xmx{resources.mem_mb}m {input.gatk4} CalculateContamination "
         "-I {output.pileupsummarytable} -O {output.contaminationtable}) &> {log}"
 
 rule contam_filter_mutectcalls:
@@ -121,7 +121,7 @@ rule contam_filter_mutectcalls:
     output:
         contam_filtered_vcf = 'data_processing/mutect2/contam_filter/{sample}.mutect2.f1.vcf.gz'
     threads: 1
-    resources: mem_mb = 4000
+    resources: mem_mb = lambda wildcards, attempt: attempt * 4000
     log:
         'logs/{sample}.contam_filter_mutectcalls.log'
     shell:
@@ -161,7 +161,7 @@ rule artifact_filter_mutectcalls:
         artifact_filtered_vcf = 'data_processing/mutect2/final/{sample}.mutect2.final.vcf.gz'
     resources: mem_mb = 4000
     log:
-        'log/{sample}.artifact_filter_mutectcalls.log'
+        'logs/{sample}.artifact_filter_mutectcalls.log'
     shell:
         "({input.java8} -jar -Xmx{resources.mem_mb}m {input.gatk4}  " 
         " FilterByOrientationBias " 
