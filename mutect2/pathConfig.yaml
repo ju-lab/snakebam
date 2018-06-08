@@ -14,7 +14,7 @@ bwa: /home/users/cjyoon/anaconda3/bin/bwa
 
 af_only_gnomad: /home/users/cjyoon/reference/mutect2/af-only-gnomad.raw.sites.b37.vcf.gz
 small_exac_common: /home/users/cjyoon/reference/mutect2/small_exac_common_3_b37.vcf.gz
-
+common_biallelic_variants: /home/users/cjyoon/reference/mutect2/small_exac_common_3_b37.biallelic.vcf.gz
 # variant filters
 passFilter: scripts/passFilter
 
