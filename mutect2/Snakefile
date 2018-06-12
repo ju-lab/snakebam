@@ -50,7 +50,7 @@ rule mutect2_pon:
     log:
         'logs/mutect2_pon.log'
     run:
-        input_string = ['-v' + vcf for vcf in input.normal_vcfs]
+        input_string = ['--vcfs ' + vcf for vcf in input.normal_vcfs]
         input_string = " ".join(input_string)
         shell('({input.java8} -jar -Xmx{resources.mem_mb}m {input.gatk4} CreateSomaticPanelOfNormals {input_string} \
             -O {output.pon}) &> {log}')
