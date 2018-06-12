@@ -77,13 +77,13 @@ rule mutect2_call:
         tumor_name = sampleNameBam(input.tumor_bam)
         normal_name = sampleNameBam(input.normal_bam)
 
-        shell('({input.java8} -jar -Xmx{resources.mem_mb}m {input.gatk} --java-options "-Xmx2g" Mutect2 \
+        shell('({input.java8} -jar -Xmx{resources.mem_mb}m {input.gatk4} Mutect2 \
             -R {input.ref} \
             -I {input.tumor_bam} \
             -I {input.normal_bam} \
             -tumor {tumor_name} \
             -normal {normal_name} \
-            -pon {input.pon}\
+            -pon {input.pon} \
             --germline-resource {input.af_only_gnomad} \
             --af-of-alleles-not-in-resource 0.0000025 \
             --disable-read-filter MateOnSameContigOrNoMappedMateReadFilter \
