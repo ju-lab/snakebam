@@ -31,7 +31,7 @@ rule mutect2_normalcall:
         'logs/{sample}.mutect2_normalcall.log'
     run:
         normal_name = sampleNameBam(input.normal_bam)
-        shell('({input.java8} -jar -Xmx{resources.mem_mb}m {input.gatk4} Mutect2 -R {input.ref} \
+        shell('({input.java8} -Xmx{resources.mem_mb}m -jar {input.gatk4} Mutect2 -R {input.ref} \
             -I {input.normal_bam} \
             -tumor {normal_name}\
             --disable-read-filter MateOnSameContigOrNoMappedMateReadFilter \
@@ -52,7 +52,7 @@ rule mutect2_pon:
     run:
         input_string = ['--vcfs ' + vcf for vcf in input.normal_vcfs]
         input_string = " ".join(input_string)
-        shell('({input.java8} -jar -Xmx{resources.mem_mb}m {input.gatk4} CreateSomaticPanelOfNormals {input_string} \
+        shell('({input.java8} -Xmx{resources.mem_mb}m -jar {input.gatk4} CreateSomaticPanelOfNormals {input_string} \
             -O {output.pon}) &> {log}')
 
 
@@ -77,7 +77,7 @@ rule mutect2_call:
         tumor_name = sampleNameBam(input.tumor_bam)
         normal_name = sampleNameBam(input.normal_bam)
 
-        shell('({input.java8} -jar -Xmx{resources.mem_mb}m {input.gatk4} Mutect2 \
+        shell('({input.java8} -Xmx{resources.mem_mb}m -jar {input.gatk4} Mutect2 \
             -R {input.ref} \
             -I {input.tumor_bam} \
             -I {input.normal_bam} \
@@ -105,7 +105,7 @@ rule contam_estimate:
     log:
         'logs/{sample}.contam_estimate.log'
     shell:
-        "({input.java8} -jar -Xmx{resources.mem_mb}m {input.gatk4} GetPileupSummaries "
+        "({input.java8} -Xmx{resources.mem_mb}m -jar {input.gatk4} GetPileupSummaries "
         "-I {input.tumor_bam} "
         "-V {input.common_biallelic_variants} "
         "-O {output.pileupsummarytable};"
@@ -125,7 +125,7 @@ rule contam_filter_mutectcalls:
     log:
         'logs/{sample}.contam_filter_mutectcalls.log'
     shell:
-        "({input.java8} -jar Xmx{resources.mem_mb}m {input.gatk4} FilterMutectCalls "
+        "({input.java8} -Xmx{resources.mem_mb}m -jar {input.gatk4} FilterMutectCalls "
         "-V {input.initial_callset} "
         "--contamination-table {input.contaminationtable} " 
         "-O {output.contam_filtered_vcf}) &> {log}"
@@ -144,7 +144,7 @@ rule artifact_metric:
     log:
         'logs/{sample}.artifact_metric.log'
     shell:
-        "({input.java8} -jar -Xmx{resources.mem_mb}m {input.gatk4} "
+        "({input.java8} -Xmx{resources.mem_mb}m -jar {input.gatk4} "
         "CollectSequencingArtifactMetrics "
         "-I {input.tumor_bam} "
         "-O data_processing/mutect2/artifact_filter/{wildcards.sample} "
@@ -163,10 +163,10 @@ rule artifact_filter_mutectcalls:
     log:
         'logs/{sample}.artifact_filter_mutectcalls.log'
     shell:
-        "({input.java8} -jar -Xmx{resources.mem_mb}m {input.gatk4}  " 
+        "({input.java8} -Xmx{resources.mem_mb}m -jar {input.gatk4}  " 
         " FilterByOrientationBias " 
-        "-A G/T "
-        "-A C/T "
+        "--artifact-modes G/T "
+        "--artifact-modes C/T "
         "-V {input.contam_filtered_vcf} "
         "-P {input.artifact_metric} "
         "-O {output.artifact_filtered_vcf}) &> {log}"

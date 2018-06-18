@@ -46,7 +46,7 @@ rule markdup:
     log:
         "logs/{sample}.md.log"
     shell:
-        "({input.java} -XX:ParallelGCThreads={threads} -Xmx8g -jar {input.picard} MarkDuplicates "
+        "({input.java} -XX:ParallelGCThreads={threads} -Xmx{resources.mem_mb}m -jar {input.picard} MarkDuplicates "
         "REMOVE_DUPLICATES=true REMOVE_SEQUENCING_DUPLICATES=true I={input.sortedbam} O={output.mdbam} "
         "M={output.mdbam}.metric VALIDATION_STRINGENCY=LENIENT TMP_DIR=md_temp QUIET=true; "
         "{input.samtools} index {output.mdbam}) "
@@ -70,9 +70,9 @@ rule realign:
     log:
         "logs/{sample}.realign.log"
     shell:
-        "({input.java} -Xmx4g -jar {input.gatk} -T RealignerTargetCreator -R {input.ref} "
+        "({input.java} -Xmx{resources.mem_mb}m -jar {input.gatk} -T RealignerTargetCreator -R {input.ref} "
         " -I {input.bam} --known {input.knownindel} -o {output.realignedbam}.intervals; "
-        "{input.java} -Xmx4g -jar {input.gatk} -T IndelRealigner -R {input.ref} -I {input.bam} "
+        "{input.java} -Xmx{resources.mem_mb}m -jar {input.gatk} -T IndelRealigner -R {input.ref} -I {input.bam} "
         "-targetIntervals {output.realignedbam}.intervals -o {output.realignedbam}; "
         "{input.samtools} index {output.realignedbam}) "
         "&> {log}"
@@ -96,8 +96,8 @@ rule baserecal:
     log:
         "logs/{sample}.baserecal.log"
     shell:
-        "({input.java} -Xmx4g -jar {input.gatk} -T BaseRecalibrator -R {input.ref} -I {input.bam} -knownSites {input.dbsnp} --knownSites {input.knownindel} -o {output.recalTable}; "
-        "{input.java} -Xmx4g -jar {input.gatk} -T PrintReads -R {input.ref} -I {input.bam} -BQSR {output.recalTable} -o {output.recalbam} -nct {threads}; "
+        "({input.java} -Xmx{resources.mem_mb}m -jar {input.gatk} -T BaseRecalibrator -R {input.ref} -I {input.bam} -knownSites {input.dbsnp} --knownSites {input.knownindel} -o {output.recalTable}; "
+        "{input.java} -Xmx{resources.mem_mb}m -jar {input.gatk} -T PrintReads -R {input.ref} -I {input.bam} -BQSR {output.recalTable} -o {output.recalbam} -nct {threads}; "
         "{input.samtools} index {output.recalbam}) "
         " &> {log}"
 
